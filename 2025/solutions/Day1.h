@@ -6,6 +6,14 @@
 
 static std::vector<std::string> import_file(const std::string &filename);
 
+/*
+    Solution overview:
+        Build a doubly-linked list to model the lock. I can't be bothered with the integer underflow and overflow edge cases lol.
+        Overload the += and -= operators to traverse the lock either left or right by X amount, increment whenever you see a 0.
+*/
+
+
+
 // Doubly linkedlist implementation
 class Node {
 public:
@@ -121,7 +129,7 @@ static void day1() {
 
 
 
-// Old solution -> couldn't be bothered with lock underflow or overflow bugs
+// Old solution -> couldn't be bothered with lock underflow or overflow edge cases
 
 class LockInt {
 
