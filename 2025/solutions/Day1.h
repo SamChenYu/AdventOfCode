@@ -3,8 +3,8 @@
 #include <mutex>
 #include <string>
 #include <vector>
+#include "FileImport.h"
 
-static std::vector<std::string> import_file(const std::string &filename);
 
 /*
     Solution overview:
@@ -30,7 +30,7 @@ public:
     Node& operator -=(const int& count) {
         Node* result = this;
         for (int i=0; i<count; i++) {
-            if (result->get() == 0) (*m_Counter)++;
+            if (result->get() == 0) (*m_Counter)++; // Comment out for Part 1
             result = result->get_left();
         }
         return *result;
@@ -39,7 +39,7 @@ public:
     Node& operator +=(const int& count) {
         Node* result = this;
         for (int i=0; i<count; i++) {
-            if (result->get() == 0) (*m_Counter)++;
+            if (result->get() == 0) (*m_Counter)++; // Comment out for Part 1
             result = result->get_right();
         }
         return *result;
@@ -71,22 +71,25 @@ static void day1() {
 
     // Init the Lock
     std::array<Node, 100> nodes{};
-    for (int i=1; i<99; i++) {
+    for (int i=0; i<100; i++) {
         nodes[i].set(i);
         nodes[i].set_counter(&counter);
+
+        if (i == 0 || i == 99) {
+            continue;
+        }
+
         nodes[i].set_left(&nodes[i-1]);
         nodes[i].set_right(&nodes[i+1]);
     }
-    nodes[0].set(0);              nodes[0].set_counter(&counter);
+    // Connect the head and  tail
     nodes[0].set_left(&nodes[99]);      nodes[0].set_right(&nodes[1]);
-
-    nodes[99].set(99);            nodes[99].set_counter(&counter);
     nodes[99].set_left(&nodes[98]);     nodes[99].set_right(&nodes[0]);
 
 
     // Start Solution
     Node* temp_node = &nodes[50];
-    std::vector<std::string> text = import_file( "../Solutions/Day1.txt");
+    std::vector<std::string> text = import_file( "../solutions/Day1.txt");
 
     for (auto line : text) {
 
@@ -109,8 +112,12 @@ static void day1() {
         } else {
             temp_node = &((*temp_node)+=magnitude); // POINTER HELL!!!!
         }
-        std::cout << temp_node->get() << std::endl;
+        // std::cout << temp_node->get() << std::endl;
+        //if (temp_node->get() == 0) counter++;                        // Uncomment for Part 1
     }
+
+
+
     std::cout << "Total: " << counter << std::endl;
 
 }
@@ -198,7 +205,7 @@ private:
  static void day1_old() {
       // Number of times the dial is left pointing at 0 after any rotation in the sequence
       // The dial starts at 50
-      std::vector<std::string> text = import_file("../Solutions/Day1Test.txt");
+      std::vector<std::string> text = import_file("../solutions/Day1Test.txt");
 
       LockInt lock{};
 
@@ -236,19 +243,3 @@ private:
 
 
 
-
-static std::vector<std::string> import_file(const std::string &filename) {
-    std::vector<std::string> text{};
-    std::ifstream file(filename);
-    if (!file) {
-        std::cerr << "Error opening file.txt\n";
-        return text;
-    }
-
-    std::string str{};
-    while (std::getline(file, str)) {
-        text.push_back(str);
-    }
-    file.close();
-    return text;
-}
