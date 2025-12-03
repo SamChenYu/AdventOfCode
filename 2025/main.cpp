@@ -3,11 +3,15 @@
 
 #include "solutions/Day1.h"
 #include "solutions/Day2.h"
+#include "solutions/Day3.h"
+
 
 int main() {
     std::vector<std::function<void()>> functions{
         []() { day1(); },
-        []() { day2(); }
+        []() { day2(); },
+        []() { day3(); }
+
     };
 
 
@@ -15,7 +19,7 @@ int main() {
     //     functions[i]();
     // }
 
-    int run = 1;
+    int run = 2;
 
 
     functions[run]();

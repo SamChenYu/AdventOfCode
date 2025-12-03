@@ -56,6 +56,36 @@ long process_id_part_2(long start, long end) {
           1111111 (1 seven times) are all invalid IDs.
      */
 
+
+
+     /*
+          This algorithm looks flawed! But it works (I don't really understand it either)!
+
+          Lemme reason about this:
+
+          - I loop through every single possible pattern from length 1 to length (n/2) (max length is half because then it would repeat once only)
+          - If it does have a pattern, every single possible pattern would find at least one occurrence
+
+          For example if I have 1234512345 I start by choosing every possible substring up to the half length so that would check these patterns:
+          1
+          12
+          123
+          1234
+          12345
+          It compares it to the remaining strings that doesn't include itself so the comparisons would be
+          1 => 234512345 TRUE contains 1
+          12 => 34512345 TRUE contains 12
+          123 => 4512345 TRUE contains 123
+          1234 => 512345 TRUE contains 1234
+          12345 => 12345 TRUE contains 12345
+
+          a counterexample would be if we had 12345123450 it would keep going until
+          123451 => 23450 FALSE so that gets satisfied
+
+
+
+      */
+
      long answer = 0;
      for (long i = start; i <= end; i++) {
           // Go through the range of nums
@@ -70,7 +100,7 @@ long process_id_part_2(long start, long end) {
                for (int k=pattern_length; k<num_str.length(); k+=pattern_length) {
                     // Check through the remaining string to check if the pattern matches
                     std::string temp_str = num_str.substr(k, pattern_length);
-                    if (temp_str.find(current_pattern) == std::string::npos) {
+                    if (temp_str != current_pattern) { // change from temp_str.find(current_pattern) == std::string::npos
                          patternMatches = false;
                          break;
                     }
@@ -94,19 +124,21 @@ static void day2() {
 
      long answer = 0;
 
-     std::vector<std::string> text = import_file("../solutions/Day2.txt");
+     // std::vector<std::string> text = import_file("../solutions/Day2.txt");
+     //
+     // // Input is only one line
+     // // Split delimited by commas
+     // auto comma_split = split(text[0], ',');
+     //
+     // for (const auto& line : comma_split) {
+     //      // Split delimited by dash
+     //      auto dash_split = split(line, '-');
+     //      //answer += process_id_part_1(std::stol(dash_split[0]), std::stol(dash_split[1]));
+     //      answer += process_id_part_2(std::stol(dash_split[0]), std::stol(dash_split[1]));
+     //
+     // }
 
-     // Input is only one line
-     // Split delimited by commas
-     auto comma_split = split(text[0], ',');
-
-     for (const auto& line : comma_split) {
-          // Split delimited by dash
-          auto dash_split = split(line, '-');
-          //answer += process_id_part_1(std::stol(dash_split[0]), std::stol(dash_split[1]));
-          answer += process_id_part_2(std::stol(dash_split[0]), std::stol(dash_split[1]));
-
-     }
+     answer += process_id_part_2(1230, 1230);
 
      std:: cout << "Answer " << answer << std::endl;
 

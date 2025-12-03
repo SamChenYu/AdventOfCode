@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 23)
 add_executable(AdventOfCode main.cpp
         solutions/Day1.h
         solutions/FileImport.h
-        solutions/Day2.h)
+        solutions/Day2.h
+        solutions/Day3.h)
