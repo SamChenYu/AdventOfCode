@@ -7,7 +7,7 @@
 #include "FileImport.h"
 
 
-static long get_biggest_joltage_part1(std::string input) {
+static unsigned long long  get_biggest_joltage_part1(std::string input) {
 
     int firstNum{-1};
     int firstIndex{-1};
@@ -31,11 +31,11 @@ static long get_biggest_joltage_part1(std::string input) {
 
 
 
-    return std::stol(str_num);
+    return std::stoull(str_num);
 }
 
 
-static long get_biggest_joltage_part2(const std::string &input) {
+static unsigned long long  get_biggest_joltage_part2(const std::string &input) {
 
     // For your nth number, you need to make sure there is at least 12-n numbers left
     // For example input:   811111111111119 (length = 15)
@@ -61,13 +61,13 @@ static long get_biggest_joltage_part2(const std::string &input) {
         str_num += std::to_string(temp);
     }
 
-    return std::stol(str_num);
+    return std::stoull(str_num);
 }
 
 static void day3() {
     std::vector<std::string> text = import_file("../solutions/Day3.txt");
 
-    long total_joltage{0};
+    unsigned long long  total_joltage{0};
 
     for (auto line: text) {
         //total_joltage += get_biggest_joltage_part1(line);

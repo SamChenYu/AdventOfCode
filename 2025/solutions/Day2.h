@@ -19,7 +19,7 @@ std::vector<std::string> split (const std::string &s, char delim) {
      return result;
 }
 
-long process_id_part_1(long start, long end) {
+unsigned long long  process_id_part_1(unsigned long long  start, unsigned long long  end) {
 
      /*
           Since the young Elf was just doing silly patterns, you can find the invalid IDs by looking
@@ -28,9 +28,9 @@ long process_id_part_1(long start, long end) {
      */
 
      // Just check if first half of the string == second half of the string
-     long answer = 0;
+     unsigned long long  answer = 0;
 
-     for (long i = start; i <= end; i++) {
+     for (unsigned long long  i = start; i <= end; i++) {
 
           std::string num_str = std::to_string(i);
           // Must be divisible by 2 to be repeatable
@@ -48,7 +48,7 @@ long process_id_part_1(long start, long end) {
      return answer;
 }
 
-long process_id_part_2(long start, long end) {
+unsigned long long process_id_part_2(unsigned long long  start, unsigned long long  end) {
 
      /*
           Now, an ID is invalid if it is made only of some sequence of digits repeated at least twice.
@@ -86,8 +86,8 @@ long process_id_part_2(long start, long end) {
 
       */
 
-     long answer = 0;
-     for (long i = start; i <= end; i++) {
+     unsigned long long  answer = 0;
+     for (unsigned long long  i = start; i <= end; i++) {
           // Go through the range of nums
           std::string num_str = std::to_string(i);
 
@@ -122,7 +122,7 @@ static void day2() {
 
      std::vector<std::string> text = import_file("../solutions/Day2.txt");
 
-     long answer = 0;
+     unsigned long long  answer = 0;
 
      // Input is only one line
      // Split delimited by commas
@@ -131,13 +131,13 @@ static void day2() {
      for (const auto& line : comma_split) {
           // Split delimited by dash
           auto dash_split = split(line, '-');
-          //answer += process_id_part_1(std::stol(dash_split[0]), std::stol(dash_split[1]));
-          answer += process_id_part_2(std::stol(dash_split[0]), std::stol(dash_split[1]));
+          //answer += process_id_part_1(std::stoull(dash_split[0]), std::stoull(dash_split[1]));
+          answer += process_id_part_2(std::stoull(dash_split[0]), std::stoull(dash_split[1]));
 
      }
 
 
-     std:: cout << "Answer " << answer << std::endl;
+     std:: cout << "Answer: " << answer << std::endl;
 
 
 
