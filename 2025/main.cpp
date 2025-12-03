@@ -18,8 +18,6 @@ void profile(std::function<void()> function) {
 }
 
 
-
-
 int main() {
     std::vector<std::function<void()>> functions{
         []() { day1(); },

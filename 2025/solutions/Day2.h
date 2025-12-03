@@ -120,25 +120,22 @@ long process_id_part_2(long start, long end) {
 
 static void day2() {
 
-
+     std::vector<std::string> text = import_file("../solutions/Day2.txt");
 
      long answer = 0;
 
-     // std::vector<std::string> text = import_file("../solutions/Day2.txt");
-     //
-     // // Input is only one line
-     // // Split delimited by commas
-     // auto comma_split = split(text[0], ',');
-     //
-     // for (const auto& line : comma_split) {
-     //      // Split delimited by dash
-     //      auto dash_split = split(line, '-');
-     //      //answer += process_id_part_1(std::stol(dash_split[0]), std::stol(dash_split[1]));
-     //      answer += process_id_part_2(std::stol(dash_split[0]), std::stol(dash_split[1]));
-     //
-     // }
+     // Input is only one line
+     // Split delimited by commas
+     auto comma_split = split(text[0], ',');
 
-     answer += process_id_part_2(1230, 1230);
+     for (const auto& line : comma_split) {
+          // Split delimited by dash
+          auto dash_split = split(line, '-');
+          //answer += process_id_part_1(std::stol(dash_split[0]), std::stol(dash_split[1]));
+          answer += process_id_part_2(std::stol(dash_split[0]), std::stol(dash_split[1]));
+
+     }
+
 
      std:: cout << "Answer " << answer << std::endl;
 

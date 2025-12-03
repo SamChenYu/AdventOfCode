@@ -67,6 +67,8 @@ private:
 
 static void day1() {
 
+    std::vector<std::string> text = import_file( "../solutions/Day1.txt");
+
     int counter = 0;
 
     // Init the Lock
@@ -89,7 +91,7 @@ static void day1() {
 
     // Start Solution
     Node* temp_node = &nodes[50];
-    std::vector<std::string> text = import_file( "../solutions/Day1.txt");
+
 
     for (auto line : text) {
 
