@@ -7,4 +7,5 @@ add_executable(AdventOfCode main.cpp
         solutions/FileImport.h
         solutions/Day1.h
         solutions/Day2.h
-        solutions/Day3.h)
+        solutions/Day3.h
+        solutions/Day4.h)

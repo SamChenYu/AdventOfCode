@@ -5,6 +5,8 @@
 #include "solutions/Day1.h"
 #include "solutions/Day2.h"
 #include "solutions/Day3.h"
+#include "solutions/Day4.h"
+
 
 void profile(std::function<void()> function) {
     auto begin = std::chrono::high_resolution_clock::now();
@@ -22,16 +24,21 @@ int main() {
     std::vector<std::function<void()>> functions{
         []() { day1(); },
         []() { day2(); },
-        []() { day3(); }
+        []() { day3(); },
+        []() { day4(); }
     };
 
 
-    for (size_t i = 0; i < functions.size(); ++i) {
-        std::cout << "=====================" << std::endl;
-        std:: cout << "Day " << (i+1) << std::endl;
-        profile(functions[i]);
-    }
+    // for (size_t i = 0; i < functions.size(); ++i) {
+    //     std::cout << "=====================" << std::endl;
+    //     std:: cout << "Day " << (i+1) << std::endl;
+    //     profile(functions[i]);
+    // }
 
+    int i{3};
+    std::cout << "=====================" << std::endl;
+    std:: cout << "Day " << (i+1) << std::endl;
+    profile(functions[i]);
 
 
     return 0;
