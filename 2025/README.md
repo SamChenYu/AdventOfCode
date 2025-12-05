@@ -391,3 +391,10 @@ Start with your original diagram. How many rolls of paper in total can be remove
 Your puzzle answer was 9401.
 </details>
 
+
+
+
+<details>
+<sumary></summary>
+
+</details>

@@ -8,4 +8,5 @@ add_executable(AdventOfCode main.cpp
         solutions/Day1.h
         solutions/Day2.h
         solutions/Day3.h
-        solutions/Day4.h)
+        solutions/Day4.h
+        solutions/Day5.h)
