@@ -83,6 +83,9 @@ static void day5() {
         18-21       // needs to be skipped!
                     == 21
     */
+
+
+
     // Calculate the total number of 'fresh' IDs
     // Be careful of overlapping ranges!
     std::sort(ranges.begin(), ranges.end(), [](auto& left, auto& right) {
@@ -90,28 +93,26 @@ static void day5() {
     });
 
     unsigned long long answer{0};
-
     unsigned long long largest_upper{0};
 
-
     for (int i = 0; i < ranges.size(); i++) {
-
-
         if (largest_upper > ranges[i].second) {
             continue; // the whole range has already been consumed
         }
 
-        if (largest_upper > ranges[i].first) {
+        if (largest_upper >= ranges[i].first) {
 
             // prev upper range is bigger than the first num
             // two cases: bigger than the current second (already covered above)
             //            smaller than the current second
 
-            unsigned long long temp = ranges[i].second - largest_upper  ;
-            answer += temp;
+            unsigned long long temp = ranges[i].second - largest_upper;
             largest_upper = ranges[i].second;
+            answer += temp;
             continue;
         }
+
+
 
         // No overlapping
         unsigned long long temp = ranges[i].second - ranges[i].first + 1;

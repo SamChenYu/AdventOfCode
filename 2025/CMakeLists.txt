@@ -9,4 +9,5 @@ add_executable(AdventOfCode main.cpp
         solutions/Day2.h
         solutions/Day3.h
         solutions/Day4.h
-        solutions/Day5.h)
+        solutions/Day5.h
+        solutions/Day6.h)
