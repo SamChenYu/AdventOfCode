@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "FileImport.h"
+#include "ImportFile.h"
 
 // Part 2
 static void day6() {

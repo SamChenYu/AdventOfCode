@@ -1,13 +1,13 @@
 #pragma once
 
-#include "FileImport.h"
+#include "ImportFile.h"
 
 
 
 
 
 static int get_adjacent_num(std::vector<bool>& grid, int row_size,
-        std::array<int, 3>& left, std::array<int, 3>& right, std::array<int, 2>& middle) {
+                            std::array<int, 3>& left, std::array<int, 3>& right, std::array<int, 2>& middle) {
 
 
     int count{0};

@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-static std::vector<std::string> import_file(const std::string &filename) {
+inline std::vector<std::string> import_file(const std::string &filename) {
     std::vector<std::string> text{};
     std::ifstream file(filename);
     if (!file) {

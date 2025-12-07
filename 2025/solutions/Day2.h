@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 
-#include "FileImport.h"
+#include "ImportFile.h"
 
 std::vector<std::string> split (const std::string &s, char delim) {
      std::vector<std::string> result;
