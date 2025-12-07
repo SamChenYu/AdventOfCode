@@ -1,20 +1,16 @@
 #pragma once
 
 #include "ImportFile.h"
-
-// Part 2 forward declaration
-static void check_recursive(const std::vector<std::string>& text, int& answer, int i, int j, int depth);
-
+#include <unordered_map>
 
 static void day7() {
 
-    //int answer{0}; // Part 1
-    int answer{1};
+    unsigned long long answer{1};
     auto text = import_file("../solutions/Day7.txt");
     std::pair<int, int> entry_point{};
 
     for (int i=0; i<text.size()-1; i++) {
-        // The tachyon split never goes into another tacyhon, just place it directly below
+        // The tachyon split never goes into another tachyon, just place it directly below
         std::string line = text[i];
 
         for (int j=0; j<line.size(); j++) {
@@ -47,28 +43,52 @@ static void day7() {
     std::cout << "Tachyons Split: " << answer << std::endl;
 
 
-    answer = 1;
-    check_recursive(text, answer, entry_point.first, entry_point.second, 1);
-    std::cout << "Different paths: " << answer << std::endl;
-}
+    answer = 0;
 
-static void check_recursive(const std::vector<std::string>& text, int& answer, int i, int j, int depth) {
-    //std::cout << "Depth :" << depth << std::endl;
-    if (i >= text.size()-1) return;
 
-    // Check if there is a split below first
-    if (text[i+1].at(j) == '^') {
 
-        check_recursive(text, answer, i+1, j-1, depth+1);
-        answer++;
-        check_recursive(text, answer, i+1, j+1, depth+1);
+    // Backtracking method
 
-    } else if (text[i+1].at(j) == '|') {
-        check_recursive(text, answer, i+1, j, depth+1);
+    std::vector<std::vector<unsigned long long>> map{text.size(), std::vector<unsigned long long>(text[0].size(), 0)};
+    // Init the last table
+    std::string& last_line = text.back();
+
+    for (int i=0; i<last_line.size(); i++ ) {
+        if (last_line.at(i) == '|') {
+            map[text.size()-1][i] = 1;
+        }
     }
+
+
+
+
+    for (int i=text.size()-2; i>=0; i--) {
+
+        std::string& line = text[i];
+        std::string& line_below = text[i+1];
+        int curr_index = i;
+        int below_index = i+1;
+
+
+        for (int j=0; j<line.size(); j++) {
+            if (line[j] == '|' && map[below_index].at(j) != 0) {
+                // Two straight lines, propagate it up
+                map[curr_index][j] = map[below_index].at(j);
+            }
+
+            if (line[j] == '|' && line_below[j] == '^') {
+                unsigned long long  left = map[below_index].at(j-1);
+                unsigned long long  right = map[below_index].at(j+1);
+                unsigned long long  sum = left+right;
+                map[curr_index][j] = sum;
+            }
+        }
+
+    }
+
+    unsigned long long total{map[entry_point.first][entry_point.second]};
+    std::cout << "Different paths: " << total << std::endl;
 }
-
-
 
 
 
