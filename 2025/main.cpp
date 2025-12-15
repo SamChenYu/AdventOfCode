@@ -9,6 +9,13 @@
 #include "solutions/Day5.h"
 #include "solutions/Day6.h"
 #include "solutions/Day7.h"
+#include "solutions/Day8.h"
+#include "solutions/Day9.h"
+#include "solutions/Day10.h"
+#include "solutions/Day11.h"
+#include "solutions/Day12.h"
+
+
 
 void profile(std::function<void()> function) {
     auto begin = std::chrono::high_resolution_clock::now();
@@ -31,6 +38,12 @@ int main() {
         []() { day5(); },
         []() { day6(); },
         []() { day7(); },
+        []() { day8(); },
+        []() { day9(); },
+        []() { day10(); },
+        []() { day11(); },
+        []() { day12(); },
+
     };
 
 
@@ -40,7 +53,7 @@ int main() {
     //     profile(functions[i]);
     // }
 
-    int i{6};
+    int i{8};
     std::cout << "=====================" << std::endl;
     std:: cout << "Day " << (i+1) << std::endl;
     profile(functions[i]);
