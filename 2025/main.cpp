@@ -24,7 +24,7 @@ void profile(std::function<void()> function) {
 
     auto duration_micro = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
     auto duration_ms = std::chrono::duration_cast<std::chrono::milliseconds>(duration_micro);
-    std::cout << "Function took " <<  duration_micro.count() << " us" << " / " << duration_ms << std::endl;
+    std::cout << "Function took " <<  duration_micro.count() << " us" << " / " << duration_ms.count() << " ms" << std::endl;
 
 }
 
